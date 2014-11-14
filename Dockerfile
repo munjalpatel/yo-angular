@@ -1,16 +1,9 @@
 # Yeoman with some generators and prerequisites
-FROM google/debian:wheezy
+FROM FROM google/nodejs
 
 MAINTAINER Munjal Patel <munjalpatel@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-
-# Install node.js, then npm install yo and the generators
-RUN apt-get -yq update && \
-    apt-get -yq install git curl net-tools sudo bzip2 libpng-dev locales-all
-
-RUN curl -sL https://deb.nodesource.com/setup | bash - && \
-    apt-get -yq install nodejs
 
 RUN npm install -g npm@latest&& \
     npm install -g yo bower grunt-cli && \
@@ -31,10 +24,6 @@ ENV LANG en_US.UTF-8
 RUN mkdir /src && chown xroot:xroot /src
 WORKDIR /src
 
-ADD set_env.sh /usr/local/sbin/
-RUN chmod +x /usr/local/sbin/set_env.sh
-ENTRYPOINT ["set_env.sh"]
-
 # Always run as the xroot user
 USER xroot
 
@@ -45,3 +34,5 @@ RUN echo "alias l='ls --color=auto -lA'" >> /xroot/.bashrc
 RUN echo "alias c='clear'" >> /xroot/.bashrc
 
 CMD /bin/bash
+
+ONBUILD RUN npm install
