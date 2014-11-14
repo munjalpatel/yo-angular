@@ -5,6 +5,8 @@ MAINTAINER Munjal Patel <munjalpatel@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN apt-get -yq install adduser
+
 RUN npm install -g npm@latest&& \
     npm install -g yo bower grunt-cli && \
     npm install -g generator-angular
@@ -12,6 +14,8 @@ RUN npm install -g npm@latest&& \
 # Add an xroot user because grunt doesn't like being root
 RUN adduser --disabled-password --gecos "" xroot && \
   echo "xroot ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+RUN apt-get uninstall -yq adduser
 
 # Expose the port
 EXPOSE 4000
