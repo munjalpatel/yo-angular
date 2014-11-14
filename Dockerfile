@@ -1,5 +1,5 @@
 # Yeoman with some generators and prerequisites
-FROM FROM google/nodejs
+FROM google/nodejs
 
 MAINTAINER Munjal Patel <munjalpatel@gmail.com>
 
