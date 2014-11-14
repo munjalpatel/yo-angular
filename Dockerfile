@@ -15,7 +15,7 @@ RUN npm install -g npm@latest&& \
 RUN adduser --disabled-password --gecos "" xroot && \
   echo "xroot ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN apt-get uninstall -yq adduser
+RUN apt-get remove adduser
 
 # Expose the port
 EXPOSE 4000
