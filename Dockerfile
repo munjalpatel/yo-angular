@@ -5,6 +5,8 @@ MAINTAINER Munjal Patel <munjalpatel@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN apt-get update
+RUN apt-get install libc6
 RUN apt-get -yq install adduser
 
 RUN npm install -g npm@latest&& \
