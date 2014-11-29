@@ -41,6 +41,8 @@ RUN echo "alias c='clear'" >> /home/xroot/.bashrc
 CMD /bin/bash
 
 ONBUILD ADD ./src /src
-ONBUILD RUN chown xroot:xroot /src
+ONBUILD RUN USER root
+ONBUILD RUN chown -R xroot:xroot /src
+ONBUILD RUN USER xroot
 ONBUILD RUN npm install
 ONBUILD RUN bower install
