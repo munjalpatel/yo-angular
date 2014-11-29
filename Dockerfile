@@ -41,6 +41,8 @@ RUN echo "alias c='clear'" >> /home/xroot/.bashrc
 CMD /bin/bash
 
 ONBUILD ADD ./src /src
+ONBUILD RUN apt-get -yq install adduser
 ONBUILD RUN sudo chown -R xroot:xroot /src
+ONBUILD RUN apt-get -yq remove adduser
 ONBUILD RUN npm install
 ONBUILD RUN bower install
